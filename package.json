@@ -4,12 +4,17 @@
   "description": "QA Automation Exercise",
   "main": "index.js",
   "scripts": {
-    "test:open": "npx cypress open"
+    "test:runner": "npx cypress open",
+    "test:run": "npx cypress run --reporter mochawesome --reporter-options 'reportDir=cypress/results,overwrite=false,html=false,json=true'",
+    "posttest:run": "npx mochawesome-merge cypress/results/*.json > cypress/results/combined-report.json && npx marge cypress/results/combined-report.json -f report -o cypress/results"
   },
   "author": "Luis Brito",
   "license": "ISC",
   "devDependencies": {
     "@faker-js/faker": "^8.4.1",
-    "cypress": "^13.9.0"
+    "cypress": "^13.9.0",
+    "mochawesome": "^7.1.3",
+    "mochawesome-merge": "^4.3.0",
+    "mochawesome-report-generator": "^6.2.0"
   }
 }

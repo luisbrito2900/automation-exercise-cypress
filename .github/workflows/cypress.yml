@@ -1,0 +1,30 @@
+name: E2E Tests
+
+on: [push, pull_request]
+
+jobs:
+  cypress-run:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: "18"
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Run Cypress tests
+        run: npm run test:run
+
+      - name: Generate Mochawesome Report
+        run: npx mochawesome-merge "cypress/results/*.json" > cypress/results/combined-report.json && npx marge cypress/results/combined-report.json -f report -o cypress/results
+
+      - name: Upload Cypress artifacts
+        uses: actions/upload-artifact@v3
+        with:
+          name: cypress-artifacts
+          path: cypress/results

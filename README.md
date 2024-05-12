@@ -45,4 +45,4 @@ The test script are developed using Cypress with JavaScript. The complete test s
 
 - After test execution, the results are compiled into test reports using Mochawesome. These reports provide a detailed analysis of each test case executed, including pass/fail status, timestamps, and test steps.
 
-- Accessing Test Reports: After running the tests, the reports can be found in the `cypress/results` directory. Open e2e-tests-report.html in any web browser to view the detailed test report.
+- Accessing Test Reports: After running the tests, the reports can be found in the `cypress/results` directory. Open `e2e-tests-report.html` file in any web browser to view the detailed test report.

@@ -10,8 +10,8 @@ module.exports = defineConfig({
     reportDir: "cypress/results",
     reportFilename: "e2e-tests-report.html",
     overwrite: true,
-    html: false,
-    json: true,
+    html: true,
+    json: false,
   },
   e2e: {
     baseUrl: "https://automationexercise.com/",

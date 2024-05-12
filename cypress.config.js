@@ -3,7 +3,7 @@ const fs = require("fs");
 const path = require("path");
 
 module.exports = defineConfig({
-  video: true,
+  video: false,
   reporter: "mochawesome",
   reporterOptions: {
     charts: true,

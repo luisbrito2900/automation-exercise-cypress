@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test:runner": "npx cypress open",
-    "test:run": "npx cypress run --reporter mochawesome --reporter-options 'reportDir=cypress/results,overwrite=false,html=false,json=true'",
+    "test:run": "npx cypress run --reporter mochawesome --browser=chrome",
     "posttest:run": "npx mochawesome-merge cypress/results/*.json > cypress/results/combined-report.json && npx marge cypress/results/combined-report.json -f report -o cypress/results"
   },
   "author": "Luis Brito",

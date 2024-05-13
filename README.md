@@ -11,6 +11,10 @@ This repository contains comprehensive Cypress test scripts designed to automate
 
 ## Setting Up Test Environment
 
+### Prerequisites
+
+Ensure your local environment is set up to work with Cypress. This includes having Node.js installed. For more details on setting up Node.js, please visit [Node.js official website](https://nodejs.org/).
+
 Clone the repo
 
 ```bash

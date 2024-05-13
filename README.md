@@ -18,13 +18,13 @@ Ensure your local environment is set up to work with Cypress. This includes havi
 Clone the repo
 
 ```bash
-  git clone https://github.com/luisbrito2900/automation-exercise-cypress
+git clone https://github.com/luisbrito2900/automation-exercise-cypress
 ```
 
 Install dependencies
 
 ```bash
-  npm install
+npm install
 ```
 
 ### Running Tests
@@ -32,13 +32,13 @@ Install dependencies
 To open Cypress Test Runner
 
 ```bash
-  npm run test:runner
+npm run test:runner
 ```
 
 To run tests headlessly in the Chrome browser and generate a mochawesome HTML report in`cypress/results`
 
 ```bash
-  npm run test:run
+npm run test:run
 ```
 
 ## Automation Test Script Development and Execution

@@ -22,13 +22,7 @@ export const userData = {
   ccExpirationMonth: faker.helpers.rangeToNumber({ min: 1, max: 12 }),
   ccExpirationYear: faker.helpers.rangeToNumber({ min: 2056, max: 2099 }),
 };
-export const testData = {
-  productAmount: "30",
-  orderMsg: "QA Automation is the best field",
+export const loginData = {
   loginEmail: userData.email,
   loginPassword: userData.password,
-  subject: "QA Automation Exercise",
-  feedbackMsg: "Test message to test contact us functionality",
-  product: "Pure Cotton V-Neck T-Shirt",
-  successfulMsg: "Your product has been added to cart.",
 };

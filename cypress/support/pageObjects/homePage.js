@@ -4,21 +4,18 @@ class HomePage {
   featuresItems() {
     return cy.get(".features_items");
   }
-  productName() {
-    return cy.get(`.productinfo > p:contains(${testData.product})`);
-  }
   addToCartBtn() {
     return cy.get(".cart");
   }
-  productAddedSuccessfulMsg() {
-    return cy.get(`p:contains(${testData.successfulMsg})`);
+  productAddedSuccessfulMsg(successfulMsg) {
+    return cy.get(`p:contains(${successfulMsg})`);
   }
   viewCartBtn() {
     return cy.get("a > u").contains("View Cart");
   }
-  viewProductBtn() {
+  viewProductBtn(productName) {
     return cy
-      .get(`.productinfo > p:contains(${testData.product})`)
+      .get(`.productinfo > p:contains(${productName})`)
       .parent()
       .parent()
       .parent()

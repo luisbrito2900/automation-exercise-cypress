@@ -2,7 +2,7 @@ import HomePage from "../support/pageObjects/homePage";
 import ViewCartSection from "../support/pageObjects/viewCartSection";
 import SignUpSection from "../support/pageObjects/signUpSection";
 import NavBar from "../support/pageObjects/navBar";
-import { userData, testData } from "../support/helpers";
+import { userData, loginData } from "../support/helpers";
 import ProductDetailsPage from "../support/pageObjects/productDetailsPage";
 import CheckoutPage from "../support/pageObjects/checkoutPage";
 import PaymentPage from "../support/pageObjects/paymentPage";
@@ -20,6 +20,11 @@ const loginSection = new LoginSection();
 const contactUsPage = new ContactUsPage();
 
 describe("E2E Tests - Clothing Store", () => {
+  beforeEach(function () {
+    cy.fixture("testData.json").then(function (data) {
+      this.data = data;
+    });
+  });
   before(() => {
     cy.clearCookies();
     cy.visit("/");
@@ -30,19 +35,19 @@ describe("E2E Tests - Clothing Store", () => {
     cy.clearCookies();
   });
 
-  it("Add Product To Cart", () => {
-    homePage.viewProductBtn().click();
+  it("Add Product To Cart", function () {
+    homePage.viewProductBtn(this.data.product).click();
     productDetailsPage.quantityInput().clear();
     productDetailsPage.quantityInput().should("be.empty");
-    productDetailsPage.quantityInput().type(testData.productAmount);
+    productDetailsPage.quantityInput().type(this.data.productAmount);
     homePage.addToCartBtn().click();
     homePage
-      .productAddedSuccessfulMsg()
+      .productAddedSuccessfulMsg(this.data.successfulMsg)
       .should("contain", "Your product has been added to cart.");
     homePage.viewCartBtn().click();
   });
 
-  it("Create New User", () => {
+  it("Create New User", function () {
     viewCartSection.proceedToCheckoutBtn().click({ force: true });
     viewCartSection.registerOrLoginOption().click();
     signUpSection.nameInput().type(userData.name);
@@ -80,10 +85,10 @@ describe("E2E Tests - Clothing Store", () => {
     signUpSection.continueBtn().click();
   });
 
-  it("Checkout", () => {
+  it("Checkout", function () {
     navBar.cartBtn().click();
     viewCartSection.proceedToCheckoutBtn().click();
-    checkoutPage.orderCommentInput().type(testData.orderMsg);
+    checkoutPage.orderCommentInput().type(this.data.orderMsg);
     checkoutPage.placeOrderBtn().click();
     paymentPage.cardName().type(userData.cardName);
     paymentPage.cardNumber().type(userData.cardNumber);
@@ -99,17 +104,17 @@ describe("E2E Tests - Clothing Store", () => {
     loginSection.loginBtn().should("be.visible");
   });
   it("Login", () => {
-    loginSection.loginEmailInput().type(testData.loginEmail);
-    loginSection.loginPasswordInput().type(testData.loginPassword);
+    loginSection.loginEmailInput().type(loginData.loginEmail);
+    loginSection.loginPasswordInput().type(loginData.loginPassword);
     loginSection.loginBtn().click();
     navBar.logoutBtn().should("be.visible");
   });
-  it("Contact Us", () => {
+  it("Contact Us", function () {
     navBar.contactUsBtn().click();
     contactUsPage.nameInput().type(userData.name);
     contactUsPage.emailInput().type(userData.email);
-    contactUsPage.subjectInput().type(testData.subject);
-    contactUsPage.msgInput().type(testData.feedbackMsg);
+    contactUsPage.subjectInput().type(this.data.subject);
+    contactUsPage.msgInput().type(this.data.feedbackMsg);
     contactUsPage.submitBtn().click();
     cy.acceptPopUp();
     contactUsPage.successMsg().should("contain", "Success!");
